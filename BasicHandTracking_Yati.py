@@ -1,25 +1,3 @@
-while True:
-    success, img = cap.read()  # Read a frame from the video capture
-    imageRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # Convert BGR image to RGB
-    results = hands.process(imageRGB)  # Process the frame to detect hands
-    
-    if results.multi_hand_landmarks:  # If hands are detected in the frame
-        for handLms in results.multi_hand_landmarks:  # Iterate through each detected hand   
-            mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)  # Draw landmarks and connections
-    
-    cTime = time.time()  # Current time
-    fps = 1 / (cTime - pTime)  # Calculate frames per second
-    pTime = cTime  # Update previous time
-    
-    cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3)  # Display FPS
-    cv2.imshow("Image", img)  # Display the annotated image
-    
-    if cv2.waitKey(1) & 0xFF == ord('q'):  # Exit loop on 'q' key press
-        break
-
-
-
-
 import cv2
 import mediapipe as mp
 import time
